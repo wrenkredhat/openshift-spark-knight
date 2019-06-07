@@ -1,0 +1,42 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  name: spark-workers
+spec:
+  replicas: 3
+  strategy:
+    resources: {}
+  template:
+    metadata:
+      labels:
+        name: spark-workers
+    spec:
+      containers:
+      - image: docker-registry.default.svc:5000/spark-openshift/spark:2.4.2
+        name: spark-worker
+        args:
+          - 'worker'
+          - 'spark://spark-master:7077'
+        readinessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 5
+          periodSeconds: 5
+        livenessProbe:
+          tcpSocket:
+            port: 8081
+          initialDelaySeconds: 10
+          periodSeconds: 10
+        resources: {}
+  restartPolicy: Always
+  test: false
+  triggers:
+  - type: ConfigChange
+  - imageChangeParams:
+      automatic: true
+      containerNames:
+      - spark-worker
+      from:
+        kind: ImageStreamTag
+        name: spark:2.4.2
+    type: ImageChange

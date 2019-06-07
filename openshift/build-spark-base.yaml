@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: spark-2.4.2
+spec:
+  source:
+    git:
+        uri: "https://github.com/bodz1lla/openshift-spark.git"
+        ref: "develop"
+    type: Git
+  strategy:
+    dockerStrategy:
+      noCache: true
+  output:
+    to:
+      kind: ImageStreamTag
+      name: spark:2.4.2
