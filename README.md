@@ -1,12 +1,11 @@
-# OpenShift Spark
+# OpenShift Spark-Knight ( a jumpserver for submitting sparkjobs )
 
-Openshift Spark is dockerize application based on the Centos 7 image for deploying Apache Spark 2.4.2 cluster to OpenShift.
+....
 
-Apache Spark is a fast and general-purpose cluster computing system. It provides high-level APIs in Java, Scala, Python and R, and an optimized engine that supports general execution graphs.
 
 [http://spark.apache.org/](http://spark.apache.org/)
 
-OpenShift is an open source container application platform by [Red Hat](https://www.redhat.com) based on top of Docker containers and the Kubernetes container cluster manager.
+.....
 
 [https://www.openshift.com/](https://www.openshift.com/)
 
